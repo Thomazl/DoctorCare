@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
 
+/* Content general */
 * {
     margin: 0;
     padding: 0;
@@ -20,51 +21,80 @@
     --headline: hsl(210, 11%, 15%);
     --paragraph: hsl(210, 9%, 31%);
     --white: #ffffff;
+
+
+    --nav-height: 7.2rem;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
 
 body {
     font-family: 'DM-Sans', sans-serif;
     font-size: 1.6rem;
 
     text-align: center;
-}
-nav{
-    width: 37.5rem;
-    height: 7.2rem;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-header {
-    width: 37.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 4.1rem;
-    background: var(--background-color);
+
+    overflow: overlay;
 }
 
-h4 {
+.wrapper {
+    width: 37.5rem;
+    margin-inline: auto;
+
+    padding-inline: 2.4rem;
+}
+
+ul {
+    list-style: none;
+}
+
+
+
+/* HEADER */
+header {
+    margin-top: calc(4.1rem + var(--nav-height));
+}
+
+header::before {
+    content: '';
+    width: 100%;
+    height: calc(108rem + var(--nav-height));
+    background: var(--background-color);
+    display: block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+
+}
+
+
+header h4 {
     font-size: 1.4rem;
     color: var(--brand-green);
     margin-bottom: 1.6rem
 }
 
-h1 {
+header h1 {
     font-size: 3.4rem;
     color: var(--headline);
     margin-bottom: 2.4rem;
 }
 
-p {
+header p {
     font-size: 1.8rem;
     line-height: 150%;
     color: var(--paragraph);
     margin-bottom: 3.2rem;
 }
 
-button {
+header button {
     background: var(--brand-green);
     border: none;
     height: 6.2rem;
@@ -85,31 +115,40 @@ button {
     margin-left: auto;
     margin-right: auto;
 }
-img{
-    margin-bottom: 23rem;
+
+header img {
+    width: 26.4rem;
+    display: block;
+    margin-inline: auto;
+
+    object-fit: 0 2rem;
 }
 
-.resume{
+.stats {
     width: 32.7rem;
-    height: 47rem;
+    padding-block: 4rem;
+
 
     margin-left: auto;
-    margin-right:  auto;
-    margin-top: -23rem;
+    margin-right: auto;
     border-radius: .6rem;
 
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    
-    
+    justify-content: center;
+    gap: 6rem;
+
     background: var(--brand-beige);
+    border: 1px solid var(--brand-green-light);
 }
 
-.card h3{
+.card h3 {
     font-size: 4.8rem;
     line-height: 130%;
+    color: var(--headline);
+
+    margin-bottom: .4rem;
 
 }
 
@@ -117,6 +156,144 @@ img{
     font-size: 1.6rem;
     font-weight: 400;
 
+    margin-bottom: 0;
 
     color: var(--brand-green);
+}
+
+/* Navegation */
+nav {
+    display: flex;
+
+    height: var(--nav-height);
+
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+div.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav.scroll {
+    background: var(--brand-green);
+    width: 100%;
+}
+
+nav.scroll svg:nth-child(1) path {
+    fill: white;
+}
+
+nav.scroll button path {
+    stroke: white;
+}
+
+
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+/* menu expanded */
+body.menu-expanded {
+    overflow: hidden;
+}
+
+body.menu-expanded > :not(nav){
+    display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.menu-expanded .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: var(--brand-green);
+
+    padding-top: var(--nav-height);
+}
+
+body.menu-expanded nav {
+    position: relative;
+}
+
+.menu ul:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+
+    margin-top: 6rem;
+
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+}
+
+.menu ul li a{
+    color: var(--white);
+    text-decoration: none;
+}
+
+
+
+.menu .button{
+    background: var(--white);
+    border-radius: 4rem;
+    color: var(--brand-green);
+    text-decoration: none;
+
+    padding: 1.6rem 3.2rem;
+
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+
+    display: inline-block;
+
+    margin-top: 4.8rem;
+    margin-bottom: 8rem;
+}
+
+.social-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 3.2rem;
+}
+
+
+body.menu-expanded .logo,
+body.menu-expanded button{
+    position: relative;
+    z-index: 10;
+}
+
+body.menu-expanded .logo path {
+    fill: white;
+}
+
+body.menu-expanded button path {
+    stroke: white;
 }
