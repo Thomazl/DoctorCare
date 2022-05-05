@@ -26,10 +26,15 @@
     --nav-height: 7.2rem;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 html,
 body {
     width: 100%;
     height: 100%;
+
 }
 
 body {
@@ -39,6 +44,8 @@ body {
     text-align: center;
 
     overflow: overlay;
+
+    background: var(--brand-green-light-02);
 }
 
 .wrapper {
@@ -47,19 +54,83 @@ body {
 
     padding-inline: 2.4rem;
 }
-
+img{
+    max-width: 100%;
+}
 ul {
     list-style: none;
 }
 
-
-
-/* HEADER */
-header {
-    margin-top: calc(4.1rem + var(--nav-height));
+section {
+    padding-block: 10rem;
 }
 
-header::before {
+section header h4 {
+    font-size: 1.4rem;
+    color: var(--brand-green);
+    margin-bottom: 1.6rem
+}
+
+section header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+    color: var(--headline);
+}
+
+section header h1 {
+    font-size: 3.4rem;
+    color: var(--headline);
+    margin-bottom: 2.4rem;
+}
+
+section .content p {
+    color: var(--paragraph);
+}
+
+/* Navigation */
+#navigation {
+    display: flex;
+
+    height: var(--nav-height);
+    width: 100vw;
+
+    position: fixed;
+    top: 0;
+
+    z-index: 999;
+}
+
+#navigation .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#navigation.scroll {
+    background: var(--brand-green);
+}
+
+#navigation.scroll .logo path {
+    fill: white;
+}
+
+#navigation.scroll button path {
+    stroke: white;
+}
+
+
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* home */
+#home {
+    padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before {
     content: '';
     width: 100%;
     height: calc(108rem + var(--nav-height));
@@ -75,26 +146,14 @@ header::before {
 }
 
 
-header h4 {
-    font-size: 1.4rem;
-    color: var(--brand-green);
-    margin-bottom: 1.6rem
-}
-
-header h1 {
-    font-size: 3.4rem;
-    color: var(--headline);
-    margin-bottom: 2.4rem;
-}
-
-header p {
+#home p {
     font-size: 1.8rem;
     line-height: 150%;
     color: var(--paragraph);
     margin-bottom: 3.2rem;
 }
 
-header button {
+#home button {
     background: var(--brand-green);
     border: none;
     height: 6.2rem;
@@ -116,7 +175,7 @@ header button {
     margin-right: auto;
 }
 
-header img {
+#home img {
     width: 26.4rem;
     display: block;
     margin-inline: auto;
@@ -124,7 +183,7 @@ header img {
     object-fit: 0 2rem;
 }
 
-.stats {
+#home .stats {
     width: 32.7rem;
     padding-block: 4rem;
 
@@ -143,7 +202,7 @@ header img {
     border: 1px solid var(--brand-green-light);
 }
 
-.card h3 {
+#home .stat h3 {
     font-size: 4.8rem;
     line-height: 130%;
     color: var(--headline);
@@ -152,7 +211,7 @@ header img {
 
 }
 
-.card p {
+#home .stat p {
     font-size: 1.6rem;
     font-weight: 400;
 
@@ -161,50 +220,18 @@ header img {
     color: var(--brand-green);
 }
 
-/* Navegation */
-nav {
-    display: flex;
-
-    height: var(--nav-height);
-
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-div.wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-nav.scroll {
-    background: var(--brand-green);
-    width: 100%;
-}
-
-nav.scroll svg:nth-child(1) path {
-    fill: white;
-}
-
-nav.scroll button path {
-    stroke: white;
-}
-
-
-nav button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
 /* menu expanded */
 body.menu-expanded {
     overflow: hidden;
 }
 
-body.menu-expanded > :not(nav){
-    display: none;
+body.menu-expanded> :not(nav) {
+    visibility: hidden;
+
+}
+
+.menu {
+    transform: translate(100%, -100%);
 }
 
 .menu,
@@ -231,13 +258,25 @@ body.menu-expanded .menu {
     background: var(--brand-green);
 
     padding-top: var(--nav-height);
+
+    transition: animation 300ms;
+    animation: open-top-right 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
-body.menu-expanded nav {
-    position: relative;
+@keyframes open-top-right {
+    0% {
+        transform: scale(.5s);
+        transform-origin: 100% 0%;
+        border-radius: 0 0 0 1000rem;
+    }
+
+    100% {
+        transform: scale(1);
+        transform-origin: 100% 0%;
+    }
 }
 
-.menu ul:nth-child(1){
+.menu ul:nth-child(1) {
     display: flex;
     flex-direction: column;
     gap: 4.8rem;
@@ -249,14 +288,14 @@ body.menu-expanded nav {
     line-height: 3.1rem;
 }
 
-.menu ul li a{
+.menu ul li a {
     color: var(--white);
     text-decoration: none;
 }
 
 
 
-.menu .button{
+.menu .button {
     background: var(--white);
     border-radius: 4rem;
     color: var(--brand-green);
@@ -275,17 +314,17 @@ body.menu-expanded nav {
     margin-bottom: 8rem;
 }
 
-.social-links{
+.social-links {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     gap: 3.2rem;
 }
 
 
 body.menu-expanded .logo,
-body.menu-expanded button{
+body.menu-expanded button {
     position: relative;
     z-index: 10;
 }
@@ -296,4 +335,70 @@ body.menu-expanded .logo path {
 
 body.menu-expanded button path {
     stroke: white;
+}
+
+/* Services */
+
+#services header h4 {
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 150%;
+    color: var(--brand-green);
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+
+    margin-bottom: 1.6rem;
+}
+
+#services header h2 {
+    margin-inline: 3rem;
+    margin-bottom: 6rem;
+}
+
+#services .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+}
+
+#services .card {
+    padding: 2.4rem;
+    text-align: left;
+    border-radius: .6rem;
+    background: var(--white);
+    border: 1px solid var(--brand-green-light);
+}
+
+#services .card h3 {
+    margin-block: 1.6rem;
+}
+
+#services .card p {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 150%;
+}
+
+/* About */
+#about {
+    background: var(--brand-beige);
+}
+
+#about header h2 {
+    margin-bottom: 2.4rem;
+}
+
+#about .content p {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 150%;
+
+    text-align: left;
+
+    margin-top: 2.4rem;
+    margin-bottom: 6rem;
+}
+
+#about .content img {
+    
 }
