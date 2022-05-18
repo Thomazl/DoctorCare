@@ -1,8 +1,14 @@
 # Projeto DoctorCare
 
 ## Projeto NLW 8 da Rocketseat.
->projeto ainda em desenvolvimento
+>projeto Finalizado, com sucesso.
 
+## Variações previstas
+ - [x] Mudança de cor da pagina
+ - [ ] Adição da section de comentarios
+ - [ ] Adicionar um botão de comentários
+ - [ ] Adicionar mapa do google via consumir API
+ - [ ] Transformar a pagina em um template para criação de outras paginas
 ### Tecnologias utilizadas:
  - [x] HTML
  - [x] CSS
